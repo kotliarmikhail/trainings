@@ -20,6 +20,18 @@ class UserNamingTypeController extends AbstractController
         ];
     }
 
+    /**
+     * @Route("/view/{id}", name="user_naming_type_view", requirements={"id"="\d+"})
+     * @Template
+     */
+    public function viewAction(UserNamingType $type): array
+    {
+        return [
+            'entity_class' => UserNamingType::class,
+            'entity' => $type
+        ];
+    }
+
     public static function getSubscribedServices(): array
     {
         return parent::getSubscribedServices();

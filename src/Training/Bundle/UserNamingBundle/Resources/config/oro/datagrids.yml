@@ -8,13 +8,29 @@ datagrids:
           - u.title
           - u.format
         from:
-          - { table: Training\Bundle\UserNamingBundle\Entity\UserNamingType, alias: u }
+          - {table: Training\Bundle\UserNamingBundle\Entity\UserNamingType, alias: u}
 
     columns:
       title:
         label: training.usernaming.usernamingtype.title.label
       format:
         label: training.usernaming.usernamingtype.format.label
+        type: twig
+        frontend_type: html
+        template: '@TrainingUserNaming/UserNamingType/Datagrid/exampleColumn.html.twig'
+    properties:
+      id: ~
+      view_type_details_link:
+        type: url
+        route: user_naming_type_view
+        params: [id]
+    actions:
+      view:
+        type: navigate
+        label: 'oro.grid.action.view'
+        icon: eye
+        link: view_type_details_link
+        rowAction: true
 
     sorters:
       columns:
@@ -28,3 +44,46 @@ datagrids:
         title:
           data_name: u.title
           type: string
+
+  user-naming-types-related-users:
+    source:
+      type: orm
+      query:
+        select:
+          - u.id
+          - u.username
+          - u.firstName
+          - u.lastName
+        from:
+          - {table: 'Oro\Bundle\UserBundle\Entity\User', alias: u}
+        where:
+          and:
+            - IDENTITY(u.typeOfNaming) = :userNamingTypeId
+      bind_parameters:
+        - name: userNamingTypeId
+    columns:
+      firstName:
+        label: 'oro.user.first_name.label'
+      lastName:
+        label: 'oro.user.last_name.label'
+      username:
+        label: 'oro.user.username.label'
+    sorters:
+      columns:
+        firstName:
+          data_name: u.firstName
+      default:
+        dueDate: DESC
+    properties:
+      id: ~
+      view_user_link:
+        type: url
+        route: oro_user_view
+        params: [id]
+    actions:
+      view:
+        type: navigate
+        label: 'oro.grid.action.view_user'
+        icon: eye
+        link: view_user_link
+        rowAction: true
