@@ -17,11 +17,29 @@ class EntityNameProviderDecorator implements EntityNameProviderInterface
             return false;
         }
 
-        return sprintf('%s %s %s', $entity->getLastName(), $entity->getFirstName(), $entity->getMiddleName());
+        $typeOfNaming = $entity->get('typeOfNaming');
+
+        return $typeOfNaming
+            ? $this->getFullUserName($entity, $typeOfNaming->getFormat())
+            : sprintf('%s %s %s', $entity->getLastName(), $entity->getFirstName(), $entity->getMiddleName());
     }
 
     public function getNameDQL($format, $locale, $className, $alias): string
     {
         return $this->originalProvider->getNameDQL($format, $locale, $className, $alias);
+    }
+
+    private function getFullUserName(User $user, string $format): string
+    {
+        return strtr(
+            $format,
+            [
+                'PREFIX' => $user->getNamePrefix(),
+                'FIRST' => $user->getFirstName(),
+                'MIDDLE' => $user->getMiddleName(),
+                'LAST' => $user->getLastName(),
+                'SUFFIX' => $user->getNameSuffix(),
+            ]
+        );
     }
 }
