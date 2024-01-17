@@ -14,6 +14,8 @@ training:
       entity_label: 'User Naming Type'
       entity_plural_label: 'User Naming Types'
       entity_grid_all_view_label: 'User Naming Types'
+      id:
+        label: 'Id'
       title:
         label: 'Title'
       format:
