@@ -1,5 +1,6 @@
 datagrids:
   user-naming-types-grid:
+    acl_resource: user_naming_type_view
     source:
       type: orm
       query:
@@ -26,6 +27,7 @@ datagrids:
         params: [id]
     actions:
       view:
+        acl_resource: user_naming_type_view
         type: navigate
         label: 'oro.grid.action.view'
         icon: eye
@@ -46,6 +48,7 @@ datagrids:
           type: string
 
   user-naming-types-related-users:
+    acl_resource: oro_user_user_view
     source:
       type: orm
       query:

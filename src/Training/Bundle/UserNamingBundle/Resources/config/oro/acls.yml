@@ -1,0 +1,12 @@
+acls:
+  user_naming_type_view:
+    permission: VIEW
+    type: entity
+    class: TrainingUserNamingBundle:UserNamingType
+
+  user_naming_info_view:
+    label: training.usernaming.security.user_naming_info_view.label
+    description: training.usernaming.security.user_naming_info_view.description
+    type: action
+    category: "entity"
+    group_name: ""

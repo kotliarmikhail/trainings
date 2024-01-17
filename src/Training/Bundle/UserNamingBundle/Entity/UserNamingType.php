@@ -17,6 +17,12 @@ use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityTrait;
  *             "label"="User Naming Type",
  *             "plural_label"="User Naming Types",
  *             "description"="Contains how to display user`s name."
+ *         },
+ *         "security"={
+ *             "type"="ACL",
+ *             "group_name"="",
+ *             "permissions"="All",
+ *             "category"="account_management"
  *         }
  *     }
  * )
