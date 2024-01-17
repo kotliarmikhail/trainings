@@ -1,0 +1,52 @@
+oro:
+  workflow:
+    user_naming_flow:
+      label: 'User Naming Flow'
+      step:
+        'step:starting_point':
+          label: (Start)
+        step_name_is_not_initialized:
+          label: 'Name is not initialized'
+        step_name_parts_are_set:
+          label: 'Name parts  are set'
+        step_naming_type_is_set:
+          label: 'Naming type is set'
+      attribute:
+        entity_first_name:
+          label: 'entity_first_name'
+        entity_last_name:
+          label: 'entity_last_name'
+        entity_middle_name:
+          label: 'entity_middle_name'
+        entity_name_prefix:
+          label: 'entity_name_prefix'
+        entity_name_suffix:
+          label: 'entity_name_suffix'
+        entity_type_of_naming_title:
+          label: 'entity_type_of_naming_title'
+      transition:
+        transition_init:
+          label: Init
+          button_label: ''
+          button_title: ''
+          warning_message: ''
+        transition_set_name_parts:
+          label: 'Set name parts'
+          button_label: ''
+          button_title: ''
+          warning_message: ''
+        transition_naming_type_is_set:
+          label: 'Set naming type'
+          button_label: ''
+          button_title: ''
+          warning_message: ''
+        transition_reinitialize_name_a:
+          label: 'Reinitialize name A'
+          button_label: ''
+          button_title: ''
+          warning_message: ''
+        transition_reinitialize_name_b:
+          label: 'Reinitialize name B'
+          button_label: ''
+          button_title: ''
+          warning_message: ''

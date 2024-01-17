@@ -1,0 +1,249 @@
+workflows:
+  user_naming_flow:
+    entity: Oro\Bundle\UserBundle\Entity\User
+    entity_attribute: entity
+    steps_display_ordered: false
+    priority: 0
+    defaults:
+      active: true
+    applications:
+      - default
+    start_step: step_name_is_not_initialized
+    steps:
+      'step:starting_point':
+        is_final: false
+        order: -1
+        allowed_transitions:
+          - transition_init
+        _is_start: true
+        position:
+          - -310
+          - -369
+        entity_acl: {}
+      step_name_is_not_initialized:
+        is_final: false
+        order: 0
+        allowed_transitions:
+          - transition_set_name_parts
+        _is_start: false
+        position:
+          - -732
+          - -210
+        entity_acl: {}
+      step_name_parts_are_set:
+        is_final: false
+        order: 10
+        allowed_transitions:
+          - transition_naming_type_is_set
+        _is_start: false
+        position:
+          - -563
+          - -41
+        entity_acl: {}
+      step_naming_type_is_set:
+        is_final: true
+        order: 20
+        allowed_transitions:
+          - transition_reinitialize_name_a
+          - transition_reinitialize_name_b
+        _is_start: false
+        position:
+          - -406
+          - 115
+        entity_acl: {}
+    transitions:
+      transition_init:
+        display_type: dialog
+        destination_page: ''
+        step_to: step_name_is_not_initialized
+        is_start: true
+        form_options:
+          attribute_fields: {}
+        is_unavailable_hidden: true
+        transition_definition: transition_definition
+        frontend_options:
+          icon: ''
+          class: ''
+        is_hidden: false
+        acl_message: null
+        form_type: Oro\Bundle\WorkflowBundle\Form\Type\WorkflowTransitionType
+        init_entities: {}
+        init_routes: {}
+        init_datagrids: {}
+        page_template: null
+        dialog_template: null
+        init_context_attribute: init_context
+        message_parameters: {}
+        triggers: {}
+      transition_set_name_parts:
+        display_type: dialog
+        destination_page: ''
+        step_to: step_name_parts_are_set
+        is_start: false
+        form_options:
+          attribute_fields:
+            entity_firstName:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: oro.workflow.user_naming_flow.attribute.entity_first_name.label
+            entity_lastName:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: oro.workflow.user_naming_flow.attribute.entity_last_name.label
+            entity_middleName:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: oro.workflow.user_naming_flow.attribute.entity_middle_name.label
+            entity_namePrefix:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: ooro.workflow.user_naming_flow.attribute.entity_name_prefix.label
+            entity_nameSuffix:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: oro.workflow.user_naming_flow.attribute.entity_name_suffix.label
+        is_unavailable_hidden: true
+        transition_definition: transition_definition
+        frontend_options:
+          icon: ''
+          class: ''
+        is_hidden: false
+        acl_message: null
+        form_type: Oro\Bundle\WorkflowBundle\Form\Type\WorkflowTransitionType
+        init_entities: {}
+        init_routes: {}
+        init_datagrids: {}
+        page_template: null
+        dialog_template: null
+        init_context_attribute: init_context
+        message_parameters: {}
+        triggers: {}
+      transition_naming_type_is_set:
+        display_type: dialog
+        destination_page: ''
+        step_to: step_naming_type_is_set
+        is_start: false
+        form_options:
+          attribute_fields:
+            entity_typeOfNaming_title:
+              options:
+                required: true
+                constraints:
+                  - NotBlank: null
+                label: oro.workflow.user_naming_flow.attribute.entity_type_of_naming_title.label
+        is_unavailable_hidden: true
+        transition_definition: transition_definition
+        frontend_options:
+          icon: ''
+          class: ''
+        is_hidden: false
+        acl_message: null
+        form_type: Oro\Bundle\WorkflowBundle\Form\Type\WorkflowTransitionType
+        init_entities: {}
+        init_routes: {}
+        init_datagrids: {}
+        page_template: null
+        dialog_template: null
+        init_context_attribute: init_context
+        message_parameters: {}
+        triggers: {}
+      transition_reinitialize_name_a:
+        display_type: dialog
+        destination_page: ''
+        step_to: step_name_parts_are_set
+        is_start: false
+        form_options:
+          attribute_fields: {}
+        is_unavailable_hidden: true
+        transition_definition: transition_definition
+        frontend_options:
+          icon: ''
+          class: ''
+        is_hidden: false
+        acl_message: null
+        form_type: Oro\Bundle\WorkflowBundle\Form\Type\WorkflowTransitionType
+        init_entities: {}
+        init_routes: {}
+        init_datagrids: {}
+        page_template: null
+        dialog_template: null
+        init_context_attribute: init_context
+        message_parameters: {}
+        triggers: {}
+      transition_reinitialize_name_b:
+        display_type: dialog
+        destination_page: ''
+        step_to: step_name_is_not_initialized
+        is_start: false
+        form_options:
+          attribute_fields: {}
+        is_unavailable_hidden: true
+        transition_definition: transition_definition
+        frontend_options:
+          icon: ''
+          class: ''
+        is_hidden: false
+        acl_message: null
+        form_type: Oro\Bundle\WorkflowBundle\Form\Type\WorkflowTransitionType
+        init_entities: {}
+        init_routes: {}
+        init_datagrids: {}
+        page_template: null
+        dialog_template: null
+        init_context_attribute: init_context
+        message_parameters: {}
+        triggers: {}
+    transition_definitions:
+      transition_definition:
+        preactions: {}
+        preconditions: {}
+        conditions: {}
+        actions: {}
+    attributes:
+      entity_firstName:
+        type: null
+        property_path: entity.firstName
+        options: {}
+        default: null
+      entity_lastName:
+        type: null
+        property_path: entity.lastName
+        options: {}
+        default: null
+      entity_middleName:
+        type: null
+        property_path: entity.middleName
+        options: {}
+        default: null
+      entity_namePrefix:
+        type: null
+        property_path: entity.namePrefix
+        options: {}
+        default: null
+      entity_nameSuffix:
+        type: null
+        property_path: entity.nameSuffix
+        options: {}
+        default: null
+      entity_typeOfNaming_title:
+        type: null
+        property_path: entity.typeOfNaming.title
+        options: {}
+        default: null
+    variable_definitions:
+      variables: {}
+    force_autostart: false
+    scopes: {}
+    entity_restrictions: {}
+    datagrids: {}
+    disable_operations: {}
