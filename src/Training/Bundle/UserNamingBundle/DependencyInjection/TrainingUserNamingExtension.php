@@ -18,6 +18,7 @@ class TrainingUserNamingExtension extends Extension
         $loader->load('services.yml');
         $loader->load('controllers.yml');
         $loader->load('importexport.yml');
+        $loader->load('processors.yml');
 
     }
 }
